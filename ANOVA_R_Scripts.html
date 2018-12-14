@@ -374,6 +374,40 @@ summary(aov.bww)</code></pre>
 ## initialFactorsOfValidity:initialFaceGender  0.486
 ## Residuals</code></pre>
 </div>
+<div id="factors-of-validity-x-2-face-gender-anova-at-the-final-time-of-rating" class="section level1">
+<h1>2 (Factors of Validity) X 2 (Face Gender) ANOVA at the Final Time of Rating</h1>
+<pre class="r"><code>finalRatings = mydata_revised$ratings[which(mydata_revised$time_of_rating == &quot;E&quot;)]
+finalFactorsOfValidity = mydata_revised$factors_of_validity[which(mydata_revised$time_of_rating == &quot;E&quot;)]
+
+finalFaceGender = mydata_revised$face_gender[which(mydata_revised$time_of_rating == &quot;E&quot;)]
+finalSubject = mydata_revised$subject[which(mydata_revised$time_of_rating == &quot;E&quot;)]
+
+
+aov.bww = aov(finalRatings ~ finalFactorsOfValidity*finalFaceGender + Error(finalSubject/(finalFactorsOfValidity*finalFaceGender)))
+
+summary(aov.bww)</code></pre>
+<pre><code>## 
+## Error: finalSubject
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Residuals 49  45286   924.2               
+## 
+## Error: finalSubject:finalFactorsOfValidity
+##                        Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## finalFactorsOfValidity  1  35265   35265    13.4 0.000616 ***
+## Residuals              49 128981    2632                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Error: finalSubject:finalFaceGender
+##                 Df Sum Sq Mean Sq F value Pr(&gt;F)
+## finalFaceGender  1      7     7.1   0.012  0.914
+## Residuals       49  29348   598.9               
+## 
+## Error: finalSubject:finalFactorsOfValidity:finalFaceGender
+##                                        Df Sum Sq Mean Sq F value Pr(&gt;F)
+## finalFactorsOfValidity:finalFaceGender  1     33    33.0   0.071  0.791
+## Residuals                              49  22849   466.3</code></pre>
+</div>
 
 
 
