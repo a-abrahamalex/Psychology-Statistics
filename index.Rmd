@@ -1,5 +1,11 @@
 ---
 title: "Abraham's Website"
+author: "Student Name"
+date: "7/24/2018"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
 Hello, World!
