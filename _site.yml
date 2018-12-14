@@ -1,0 +1,9 @@
+name: "Abraham's Website"
+output_dir: "."
+navbar:
+  title: "Abraham's Website"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Paper Summary"
+      href: about.html
