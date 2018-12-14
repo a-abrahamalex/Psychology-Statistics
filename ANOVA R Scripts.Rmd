@@ -1,0 +1,45 @@
+---
+title: 'ANOVA and T-test R Scripts'
+author: "Abraham Alex"
+output: 
+  html_document:
+    toc: false
+    toc_float: false
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+# 2 (factors of validity) X 2 (time of rating) X 2 (face gender) Within-Subject ANOVA
+
+```{r}
+mydata = read.csv("Ratings_ANOVA.csv")
+#mydata$Subject = factor(mydata$Subject)
+
+listOfRatings = c()
+for(x in 1:50) {
+  listOfRatings = append(listOfRatings, mydata[x, c(1:8)]) }
+listOfRatings = as.numeric(listOfRatings)
+
+# 2 X 2 X 2 ANOVA with the following independent variables and levels
+#   factors of validity: I means incongruent and C means congruent
+#   face gender: F means female and M means male
+#   time of rating: B means beginning and E means end of rating
+
+mydata_revised = data.frame(subject = c(rep(c(1:50), each = 8)), 
+                            factors_of_validity = c(rep(c("I","I","I","I","C","C","C","C"), times = 50)),
+                            face_gender = c(rep(c("F","M"), times = 200)), 
+                            time_of_rating = c(rep(c("B","B","E","E"), times = 100)), 
+                            ratings = listOfRatings)
+
+mydata_revised$subject = factor(mydata_revised$subject)
+#print(mydata_revised)
+
+#aov.bww <- aov(y ~ b1*w1*w2 + Error(subject/(w1*w2)) + b1, data=data_long)
+aov.bww = aov(ratings ~ factors_of_validity*face_gender*time_of_rating + Error(subject/(factors_of_validity*face_gender*time_of_rating)), data=mydata_revised)
+summary(aov.bww)
+```
+

@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Abraham Alex" />
 
 
-<title>README.utf8.md</title>
+<title>ANOVA and T-test R Scripts</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -201,12 +202,87 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">ANOVA and T-test R Scripts</h1>
+<h4 class="author"><em>Abraham Alex</em></h4>
 
 </div>
 
 
-<div id="psychology-statistics" class="section level1">
-<h1>Psychology-Statistics</h1>
+<div id="factors-of-validity-x-2-time-of-rating-x-2-face-gender-within-subject-anova" class="section level1">
+<h1>2 (factors of validity) X 2 (time of rating) X 2 (face gender) Within-Subject ANOVA</h1>
+<pre class="r"><code>mydata = read.csv(&quot;Ratings_ANOVA.csv&quot;)
+#mydata$Subject = factor(mydata$Subject)
+
+listOfRatings = c()
+for(x in 1:50) {
+  listOfRatings = append(listOfRatings, mydata[x, c(1:8)]) }
+listOfRatings = as.numeric(listOfRatings)
+
+# 2 X 2 X 2 ANOVA with the following independent variables and levels
+#   factors of validity: I means incongruent and C means congruent
+#   face gender: F means female and M means male
+#   time of rating: B means beginning and E means end of rating
+
+mydata_revised = data.frame(subject = c(rep(c(1:50), each = 8)), 
+                            factors_of_validity = c(rep(c(&quot;I&quot;,&quot;I&quot;,&quot;I&quot;,&quot;I&quot;,&quot;C&quot;,&quot;C&quot;,&quot;C&quot;,&quot;C&quot;), times = 50)),
+                            face_gender = c(rep(c(&quot;F&quot;,&quot;M&quot;), times = 200)), 
+                            time_of_rating = c(rep(c(&quot;B&quot;,&quot;B&quot;,&quot;E&quot;,&quot;E&quot;), times = 100)), 
+                            ratings = listOfRatings)
+
+mydata_revised$subject = factor(mydata_revised$subject)
+#print(mydata_revised)
+
+#aov.bww &lt;- aov(y ~ b1*w1*w2 + Error(subject/(w1*w2)) + b1, data=data_long)
+aov.bww = aov(ratings ~ factors_of_validity*face_gender*time_of_rating + Error(subject/(factors_of_validity*face_gender*time_of_rating)), data=mydata_revised)
+summary(aov.bww)</code></pre>
+<pre><code>## 
+## Error: subject
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Residuals 49  68568    1399               
+## 
+## Error: subject:factors_of_validity
+##                     Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+## factors_of_validity  1  18218   18218   11.12 0.00164 **
+## Residuals           49  80313    1639                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Error: subject:face_gender
+##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## face_gender  1   1808  1808.4   2.337  0.133
+## Residuals   49  37916   773.8               
+## 
+## Error: subject:time_of_rating
+##                Df Sum Sq Mean Sq F value Pr(&gt;F)
+## time_of_rating  1    536   535.9   0.901  0.347
+## Residuals      49  29143   594.7               
+## 
+## Error: subject:factors_of_validity:face_gender
+##                                 Df Sum Sq Mean Sq F value Pr(&gt;F)
+## factors_of_validity:face_gender  1    129   129.4   0.297  0.588
+## Residuals                       49  21315   435.0               
+## 
+## Error: subject:factors_of_validity:time_of_rating
+##                                    Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## factors_of_validity:time_of_rating  1  17056   17056   12.89 0.000761 ***
+## Residuals                          49  64815    1323                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Error: subject:face_gender:time_of_rating
+##                            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+## face_gender:time_of_rating  1   2144  2143.7   7.352 0.00921 **
+## Residuals                  49  14287   291.6                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Error: subject:factors_of_validity:face_gender:time_of_rating
+##                                                Df Sum Sq Mean Sq F value
+## factors_of_validity:face_gender:time_of_rating  1     11   10.56   0.043
+## Residuals                                      49  12164  248.24        
+##                                                Pr(&gt;F)
+## factors_of_validity:face_gender:time_of_rating  0.837
+## Residuals</code></pre>
 </div>
 
 

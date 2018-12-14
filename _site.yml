@@ -5,5 +5,7 @@ navbar:
   left:
     - text: "Paper Summary"
       href: index.html
-    - text: "Statistical Analysis"
+    - text: "Statistical Analysis Discussion"
       href: about.html
+    - text: "R Scripts"
+      href: ANOVA_R_Scripts.html

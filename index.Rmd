@@ -1,7 +1,6 @@
 ---
-title: 'Lab 4 Normal Abraham Alex'
+title: 'The Role of Emotion in Learning Trustworthiness from Eye-gaze: Evidence from Facial Electromyography'
 author: "Abraham Alex"
-date: "7/24/2018"
 output: 
   html_document:
     toc: false
