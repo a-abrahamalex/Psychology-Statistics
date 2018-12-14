@@ -284,6 +284,96 @@ summary(aov.bww)</code></pre>
 ## factors_of_validity:face_gender:time_of_rating  0.837
 ## Residuals</code></pre>
 </div>
+<div id="t-test-comparison-of-factors-of-validity-at-the-initial-time-of-rating" class="section level1">
+<h1>T-test Comparison of Factors of Validity at the Initial Time of Rating</h1>
+<pre class="r"><code>beginningCongruentRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == &quot;B&quot;),    which(mydata_revised$factors_of_validity == &quot;C&quot; ))]
+beginningIncongruentRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == &quot;B&quot;), which(mydata_revised$factors_of_validity == &quot;I&quot; ))]
+
+t.test(beginningCongruentRatings, beginningIncongruentRatings, var.equal = T)</code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  beginningCongruentRatings and beginningIncongruentRatings
+## t = 0.13364, df = 198, p-value = 0.8938
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -6.018543  6.893543
+## sample estimates:
+## mean of x mean of y 
+##    3.3625    2.9250</code></pre>
+</div>
+<div id="t-test-comparison-of-face-gender-at-the-initial-time-of-rating" class="section level1">
+<h1>T-test Comparison of Face Gender at the Initial Time of Rating</h1>
+<pre class="r"><code>beginningFemaleRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == &quot;B&quot;), which(mydata_revised$face_gender == &quot;F&quot; ))]
+beginningMaleRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == &quot;B&quot;), which(mydata_revised$face_gender == &quot;M&quot; ))]
+
+t.test(beginningFemaleRatings, beginningMaleRatings, var.equal = T)</code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  beginningFemaleRatings and beginningMaleRatings
+## t = 2.7649, df = 198, p-value = 0.006231
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   2.54731 15.21769
+## sample estimates:
+## mean of x mean of y 
+##    7.5850   -1.2975</code></pre>
+</div>
+<div id="t-test-comparison-of-face-gender-at-the-final-time-of-rating" class="section level1">
+<h1>T-test Comparison of Face Gender at the Final Time of Rating</h1>
+<pre class="r"><code>endingFemaleRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == &quot;E&quot;), which(mydata_revised$face_gender == &quot;F&quot; ))]
+endingMaleRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == &quot;E&quot;), which(mydata_revised$face_gender == &quot;M&quot; ))]
+
+t.test(endingFemaleRatings, endingMaleRatings, var.equal = T)</code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  endingFemaleRatings and endingMaleRatings
+## t = -0.073414, df = 198, p-value = 0.9416
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -10.5177   9.7627
+## sample estimates:
+## mean of x mean of y 
+##    0.6400    1.0175</code></pre>
+</div>
+<div id="factors-of-validity-x-2-face-gender-anova-at-the-initial-time-of-rating" class="section level1">
+<h1>2 (Factors of Validity) X 2 (Face Gender) ANOVA at the Initial Time of Rating</h1>
+<pre class="r"><code>initialRatings = mydata_revised$ratings[which(mydata_revised$time_of_rating == &quot;B&quot;)]
+initialFactorsOfValidity = mydata_revised$factors_of_validity[which(mydata_revised$time_of_rating == &quot;B&quot;)]
+initialFaceGender = mydata_revised$face_gender[which(mydata_revised$time_of_rating == &quot;B&quot;)]
+initialSubject = mydata_revised$subject[which(mydata_revised$time_of_rating == &quot;B&quot;)]
+
+
+aov.bww = aov(initialRatings ~ initialFactorsOfValidity*initialFaceGender + Error(initialSubject/(initialFactorsOfValidity*initialFaceGender)))
+
+summary(aov.bww)</code></pre>
+<pre><code>## 
+## Error: initialSubject
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Residuals 49  52425    1070               
+## 
+## Error: initialSubject:initialFactorsOfValidity
+##                          Df Sum Sq Mean Sq F value Pr(&gt;F)
+## initialFactorsOfValidity  1     10     9.6   0.029  0.865
+## Residuals                49  16146   329.5               
+## 
+## Error: initialSubject:initialFaceGender
+##                   Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+## initialFaceGender  1   3945    3945   8.458 0.00545 **
+## Residuals         49  22855     466                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Error: initialSubject:initialFactorsOfValidity:initialFaceGender
+##                                            Df Sum Sq Mean Sq F value
+## initialFactorsOfValidity:initialFaceGender  1    107   107.0   0.493
+## Residuals                                  49  10630   216.9        
+##                                            Pr(&gt;F)
+## initialFactorsOfValidity:initialFaceGender  0.486
+## Residuals</code></pre>
+</div>
 
 
 

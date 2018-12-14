@@ -43,3 +43,47 @@ aov.bww = aov(ratings ~ factors_of_validity*face_gender*time_of_rating + Error(s
 summary(aov.bww)
 ```
 
+# T-test Comparison of Factors of Validity at the Initial Time of Rating
+
+```{r}
+beginningCongruentRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == "B"),    which(mydata_revised$factors_of_validity == "C" ))]
+beginningIncongruentRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == "B"), which(mydata_revised$factors_of_validity == "I" ))]
+
+t.test(beginningCongruentRatings, beginningIncongruentRatings, var.equal = T)
+```
+
+# T-test Comparison of Face Gender at the Initial Time of Rating
+
+```{r}
+beginningFemaleRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == "B"), which(mydata_revised$face_gender == "F" ))]
+beginningMaleRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == "B"), which(mydata_revised$face_gender == "M" ))]
+
+t.test(beginningFemaleRatings, beginningMaleRatings, var.equal = T)
+```
+
+# T-test Comparison of Face Gender at the Final Time of Rating
+
+```{r}
+endingFemaleRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == "E"), which(mydata_revised$face_gender == "F" ))]
+endingMaleRatings = mydata_revised$ratings[intersect(which(mydata_revised$time_of_rating == "E"), which(mydata_revised$face_gender == "M" ))]
+
+t.test(endingFemaleRatings, endingMaleRatings, var.equal = T)
+```
+
+# 2 (Factors of Validity) X 2 (Face Gender) ANOVA at the Initial Time of Rating
+
+```{r}
+initialRatings = mydata_revised$ratings[which(mydata_revised$time_of_rating == "B")]
+initialFactorsOfValidity = mydata_revised$factors_of_validity[which(mydata_revised$time_of_rating == "B")]
+initialFaceGender = mydata_revised$face_gender[which(mydata_revised$time_of_rating == "B")]
+initialSubject = mydata_revised$subject[which(mydata_revised$time_of_rating == "B")]
+
+
+aov.bww = aov(initialRatings ~ initialFactorsOfValidity*initialFaceGender + Error(initialSubject/(initialFactorsOfValidity*initialFaceGender)))
+
+summary(aov.bww)
+```
+
+
+
+
