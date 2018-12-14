@@ -20,9 +20,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -170,101 +167,6 @@ $(document).ready(function () {
 
 
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
-
-
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -304,12 +206,20 @@ div.tocify {
 </div>
 
 
-<p>Why I am awesome.</p>
-
-
-
+<hr />
+<div id="statistical-analysis" class="section level1">
+<h1>Statistical Analysis</h1>
+<ol style="list-style-type: decimal">
+<li><p>A 2 X 2 X 2 (IV: factors of validity, face gender, and time of rating) within subjects ANOVA was conducted to analyze the trust ratings. The levels of the factors of validity was congruent and incongruent, referring to whether the pictured face gazed toward or away from the object respectively. The levels of the face gender of the individuals was female and male. Lastly, the levels of the time of rating are before and after the gaze-cueing phase.</p>
+<p>ANOVA analysis shows that there was a significant main effect for factors of validity with F (1,49) = 11.12, MS Error = 1639, p &lt; 0.00164 for the incongruent (M = -12.45, SE = 3.65) and congruent (M = 14.11, SE = 3.09) gaze-cues at the final time of rating, suggesting that a systematic influence played a noticeable role in affecting trust ratings in congruent and incongruent conditions. In contrast, at the initial time of rating, the ratings for the incongruent and congruent gaze-cues were M = 2.93, SE = 2.27 and M = 3.36, SE = 2.35, respectively. A t-test comparison of the two levels of the factors of validity at the initial time of rating show a statistically insignificant t(198) = 0.13, p &lt; 0.894, suggesting that the incongruent and congruent faces were rated similarly at the start of the experiment. The notable change in rating at the different times is also evident in the interaction between factors of validity and time of rating with F (1,49) = 12.89, MS Error = 1323, p &lt; 0.000761, further corroborating that the trust ratings were influenced by when the test was conducted. This contrast between the statistically insignificant difference in ratings at the start of the experiment and the significant difference in ratings at the end of the rating suggests that the experimental manipulation, rather than chance, was responsible for such changes.</p>
+<p>There was a significant interaction between face gender and time of rating with F (1,49) = 7.35, MS Error = 291.6, p &lt; 0.00921, suggesting that the trust ratings of both genders were changed asymmetrically following the gaze-cueing phase. Although females were initially perceived as more trustworthy than males, the trustworthiness of females and males were similar at the final time of rating. A paired sample t-test was conducted between the female (M = 7.59, SEM = 2.22) and male group (M = -1.30, SEM = 2.32) in the initial time of rating with t (198) = 2.76, p &lt; 0.006231, suggesting an initial significant difference in trust ratings between the two groups. By contrast, another paired sample t-test was conducted between the female (M = 0.64, SEM = 3.35) and male (M = 1.02, SEM = 3.90) group in the final time of rating with t (198) = -0.073, p &lt; 0.9416, suggesting a final similarity in the trust rating between female and male ratings. According to these results, females that convey an incongruent gaze-cue lost more trust rating points than their male counterparts. Additionally, females that convey a congruent gaze-cue gained fewer trust rating points than their male counterparts. These implications are particularly notable considering the fact that females were perceived to be more trustworthy that males at initial time of rating.</p>
+<p>To further determine the role of the timing of rating on the main effects and interactions, two separate 2 X 2 (IV: factors of validity and face gender) within-subjects ANOVAs were conducted with the first ANOVA and second ANOVA corresponding to the initial and final time of rating, respectively. At the initial time of rating, there was an insignificant main effect of factors of validity with F (1,49) = 0.029, MS Error = 329.5, p &lt; 0.865 but a significant main effect of face gender F (1,49) = 8.46, MS Error = 466, p &lt; 0.00545. There was no interaction between factors of validity and face gender at the initial time of rating with F (1,49) = 0.493, MS Error = 216.9, p &lt; 0.486. These results suggest that the participants based trust ratings on the gender of the face with females (M = 7.59, SEM = 2.22) rated as more trustworthy than males (M = -1.30, SEM = 2.32). An insignificant main effect for the factors of validity for incongruent (M = 2.93, SE = 2.27) and congruent (M = 3.36, SE = 2.35) gaze-cues serves to legitimize the experimental method since the participants were unaware of the congruent and incongruent faces before the start of the experiment. At the final time of rating, there was a significant main effect of factors of validity with F (1,49) = 13.4, MS Error = 2632, p &lt; 0.000616 but an insignificant main effect of gender with F (1,49) = 0.012, MS Error = 598.9, p &lt; 0.914. There was no interaction between factors of validity and face gender at the final time of rating with F (1,49) = 0.071, MS Error = 466.3, p &lt; 0.791. These results suggest that participants based trust ratings on factors of validity rather than face gender at the end of the experiment. In short, the experiment and subsequent statistical analysis contrasted the baseline measurement, in which trust rating was initially based on face gender, with the experimental measurement, in which trust rating was finally based on factors of validity, in order to determine the change that occurred as a result of the experimental manipulation.</p>
+<p>Luis et al. published the raw data tables to the open science framework where it was accessed for statistical analysis. Although most of the numbers reported in the paper accord with the numbers presented above, there is one minor discrepancy in the standard error of the mean calculations. In the above analysis, the calculation of the standard error of the mean was calculated by taking the ratio of the sample standard deviation and the square root of the sample size. It is possible that Luis et al. used a different method to obtain the reported standard error of the mean. Nevertheless, the reported numbers are not too different from those presented in the paper. All the remaining numbers accord with those presented in the paper.</p></li>
+</ol>
 </div>
-</div>
+
+
+
 
 </div>
 
